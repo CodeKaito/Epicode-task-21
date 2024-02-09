@@ -8,13 +8,19 @@ let bookList = document.getElementById("book-list");
 
 let cartList = document.getElementById("cart-list");
 
+let addToCart = document.getElementById("add-to-cart");
+
+let cart = [];
+
+let starredList = document.getElementById("starred");
+
 let ShowBooks = (data) => {
     data.forEach(item => {
         let card = document.createElement('div');
         card.classList.add("col-lg-3", "col-sm-4", "mb-4");
         card.innerHTML = `
                             <div class="card">
-                                <div>
+                                <div class="img-container">
                                     <img src="${item.img}" alt="${item.title}" class="card-img-top rounded" width="25px" />
                                 </div>
                                 <div class="mt-1 mx-3">
@@ -24,8 +30,8 @@ let ShowBooks = (data) => {
                                 <div class="d-flex justify-content-between mx-4">
                                     <p>${item.price}</p>
                                     <div>
-                                        <i class="bi-star"></i>
-                                        <i class="bi bi-cart-plus"></i>
+                                        <i class="bi-star pointer" id="starred"></i>
+                                        <i class="bi bi-cart-plus pointer" id="add-to-cart"></i>
                                     </div>
                                 </div>
                             </div>
@@ -60,8 +66,13 @@ searchInput.addEventListener("input", () => {
             // Filtra i dati in base alla parola cercata nell'input
             const filteredData = data.filter(item => item.title.toLowerCase().includes(value.toLowerCase()));
             
-            // Mostra solo i libri che corrispondono ai criteri di ricerca
+            // Mostra solo i libri che ricercati con l'input
             ShowBooks(filteredData);
         })
         .catch((err) => console.log(err));
+});
+
+addToCart.addEventListener('click', (e) => {
+    e.preventDefault();
+    console.log("ciao");
 });
