@@ -1,17 +1,12 @@
-// Endpoint of the api-----------------------------------------------------------
+// Endpoint of the API
 const endpoint = "https://striveschool-api.herokuapp.com/books";
 
-// Global variables--------------------------------------------------------------
+// Global variables
 let searchInput = document.getElementById("searchInput");
-
 let bookList = document.getElementById("book-list");
-
-let cartList = document.getElementById("cart-list");
-
-let addToCart = document.getElementById("add-to-cart");
-
+let cartList = document.getElementById("cart-list");  // Changed "cart-list" to getElementById
+let addToCart = document.getElementById("add-to-cart");  // Changed "add-to-cart" to getElementById
 let cart = [];
-
 let starredList = document.getElementById("starred");
 
 let ShowBooks = (data) => {
@@ -19,31 +14,44 @@ let ShowBooks = (data) => {
         let card = document.createElement('div');
         card.classList.add("col-lg-3", "col-sm-4", "mb-4");
         card.innerHTML = `
-                            <div class="card">
-                                <div class="img-container">
-                                    <img src="${item.img}" alt="${item.title}" class="card-img-top rounded" width="25px" />
-                                </div>
-                                <div class="mt-1 mx-3">
-                                    <p>${item.title}</p>
-                                    
-                                </div>
-                                <div class="d-flex justify-content-between mx-4">
-                                    <p>${item.price}</p>
-                                    <div>
-                                        <i class="bi-star pointer" id="starred"></i>
-                                        <i class="bi bi-cart-plus pointer" id="add-to-cart"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            `;
+            <div class="card">
+                <div class="img-container">
+                    <img src="${item.img}" alt="${item.title}" class="card-img-top rounded" width="25px" />
+                </div>
+                <div class="mt-1 mx-3">
+                    <p>${item.title}</p>
+                </div>
+                <div class="d-flex justify-content-between mx-4">
+                    <p>${item.price}</p>
+                    <div>
+                        <i class="bi-star pointer starred"></i>
+                        <i class="bi bi-cart-plus pointer" data-id="${item.asin}"></i>
+                    </div>
+                </div>
+            </div>
+        `;
         // Aggiungi la card al contenitore dei risultati della ricerca
         bookList.appendChild(card);
-    });
 
-    
+        // Aggiungi l'evento al pulsante "Add to Cart" della carta appena creata
+        let addToCartButton = card.querySelector('.bi-cart-plus');
+        addToCartButton.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            const bookId = e.target.getAttribute('data-id');
+            console.log(`Add to Cart clicked for book with ID ${bookId}`);
+
+            const selectedBook = data.find(book => book.asin === bookId);
+            if (selectedBook) {
+                cart.push(selectedBook);
+                console.log(cart);
+                ShowCartBooks(cart);
+            }
+        });
+    }); 
 };
 
-// MOSTRAMI TUTTI I LIBRI--------------------------------------------------------------
+// MOSTRAMI TUTTI I LIBRI
 window.onload = () => {
     fetch(`${endpoint}`)
         .then((res) => res.json())
@@ -72,7 +80,30 @@ searchInput.addEventListener("input", () => {
         .catch((err) => console.log(err));
 });
 
-addToCart.addEventListener('click', (e) => {
-    e.preventDefault();
-    console.log("ciao");
-});
+let ShowCartBooks = (data) => {
+    cartList.innerHTML = ""; // Pulisci il contenitore del carrello prima di visualizzare i nuovi libri
+
+    data.forEach(item => {
+        let card = document.createElement('div');
+        card.classList.add("col-lg-3", "col-sm-4", "mb-4");
+        card.innerHTML = `
+            <div class="card">
+                <div class="img-container">
+                    <img src="${item.img}" alt="${item.title}" class="card-img-top rounded" width="25px" />
+                </div>
+                <div class="mt-1 mx-3">
+                    <p>${item.title}</p>
+                </div>
+                <div class="d-flex justify-content-between mx-4">
+                    <p>${item.price}</p>
+                    <div>
+                        <i class="bi-star pointer starred"></i>
+                        <i class="bi bi-cart-plus pointer" data-id="${item.asin}"></i>
+                    </div>
+                </div>
+            </div>
+        `;
+        // Aggiungi la card al contenitore dei risultati della ricerca
+        cartList.appendChild(card);
+    }); 
+};
