@@ -6,6 +6,12 @@
 .pointer {
     cursor: pointer;
 }
+span#cart-elements {
+    background-color: rgb(122, 122, 122);
+    border-radius: 50px;
+    padding: 4px;
+    color: white; 
+}
 div.form-container {
     width: 20%;
 }
