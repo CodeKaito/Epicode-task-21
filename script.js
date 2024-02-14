@@ -139,4 +139,5 @@ function deleteBook(bookId) {
         cart.splice(indexToDelete, 1);
         ShowCartBooks(cart);
     }
+    
 }
