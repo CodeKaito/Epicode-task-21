@@ -20,11 +20,13 @@ if(window.location.search) {
 
 let showDetails = (book) => {
     let detailsHtml = `
-        <div>
-            <img src="${book.img}" alt="${book.title}" />
+        <div class="card details">
+            <img src="${book.img}" alt="${book.title} class="card-img-top" />
+            <div class="card-body">
                 <h1>${book.title}</h1>
                 <p>Price: ${book.price}</p>
-            <p>Category: ${book.category}</p>
+                <p>Category: ${book.category}</p>
+            </div>
         </div>
     `;
     detailsContainer.innerHTML = detailsHtml;

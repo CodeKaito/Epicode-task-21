@@ -22,6 +22,9 @@ div.jumbotron {
 div.input-container {
     width: 50%;
 }
+div.card.details {
+    width: 50%;
+}
 span#cart-elements.active {
     background-color: rgb(122, 122, 122);
     border-radius: 50px;
