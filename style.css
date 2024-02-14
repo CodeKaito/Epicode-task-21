@@ -6,13 +6,26 @@
 .pointer {
     cursor: pointer;
 }
-span#cart-elements {
+div#cart-card {
+    position: relative;
+}
+div.delete-icon {
+    position: absolute;
+    top: -15px;
+    left: -8px;
+}
+div.jumbotron {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+div.input-container {
+    width: 50%;
+}
+span#cart-elements.active {
     background-color: rgb(122, 122, 122);
     border-radius: 50px;
     padding: 4px;
-    color: white; 
-}
-div.form-container {
-    width: 20%;
+    color: white;
 }
 

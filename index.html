@@ -47,7 +47,7 @@
             <main>
                 <!-- JUMBOTRON -->
                 <div class="p-5 mb-4 bg-body-tertiary rounded-3">
-                    <div class="container-fluid py-5">
+                    <div class="container-fluid py-5 jumbotron">
                         <h1 class="display-5 fw-bold">Custom jumbotron</h1>
                         <p class="col-md-8 fs-4">
                             Using a series of utilities, you can create this jumbotron, just
@@ -55,8 +55,8 @@
                             examples below for how you can remix and restyle it to your
                             liking.
                         </p>
-                        <div class="d-flex form-container">
-                            <input class="form-control me-2 p-1" type="search" aria-label="Search" type="text" placeholder="Search" id="searchInput">
+                        <div class="d-lg-flex d-blockform-container input-container">
+                            <input class="form-control me-2 p-1 mb-2" type="search" aria-label="Search" type="text" placeholder="Search" id="searchInput">
                             <button class="btn btn-primary btn-lg" type="button">
                                 Search
                             </button>
@@ -93,7 +93,7 @@
         crossorigin="anonymous"></script>
     <script>
         var triggerEl = document.querySelector("#navId a");
-        bootstrap.Tab.getInstance(triggerEl).show(); // Select tab by name
+        bootstrap.Tab.getInstance(triggerEl); // Select tab by name
     </script>
     <script src="script.js"></script>
 </body>

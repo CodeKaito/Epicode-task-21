@@ -7,9 +7,18 @@ let bookList = document.getElementById("book-list");
 let cartList = document.getElementById("cart-list"); 
 let addToCart = document.getElementById("add-to-cart");
 let cartElements = document.getElementById("cart-elements");
+let docTitle = document.title;
 
 let cart = [];
 let starredList = document.getElementById("starred");
+
+window.addEventListener("blur", () => {
+    document.title = "Come back!";
+});
+
+window.addEventListener("focus", () => {
+    document.title = docTitle;
+});
 
 let ShowBooks = (data) => {
     data.forEach(item => {
@@ -90,7 +99,11 @@ let ShowCartBooks = (data) => {
         let card = document.createElement('div');
         card.classList.add("col-lg-3", "col-sm-4", "mb-4");
         card.innerHTML = `
-            <div class="card">
+            <div class="card" id="cart-card">
+                <div class="delete-icon">
+                    <i class="bi bi-x-circle pointer text-danger rounded" id="${item.asin}" onclick="deleteBook('${item.asin}')"></i>
+                </div>
+                
                 <div class="img-container">
                     <img src="${item.img}" alt="${item.title}" class="card-img-top rounded" width="25px" />
                 </div>
@@ -111,6 +124,19 @@ let ShowCartBooks = (data) => {
 
         let numberOfElCart = cart.length;
 
+        if (numberOfElCart > 0) {
+            cartElements.classList.add('active');
+        }
+
         cartElements.innerText = numberOfElCart;
     }); 
 };
+
+function deleteBook(bookId) {
+    const indexToDelete = cart.findIndex(book => book.asin === bookId);
+
+    if (indexToDelete !== -1) {
+        cart.splice(indexToDelete, 1);
+        ShowCartBooks(cart);
+    }
+}
