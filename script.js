@@ -27,8 +27,9 @@ let ShowBooks = (data) => {
         card.innerHTML = `
             <div class="card">
                 <div class="img-container">
-                    <img src="${item.img}" alt="${item.title}" class="card-img-top rounded" width="25px" />
-                </div>
+                    <a href="./details/index.html?1=${item.asin}">
+                        <img src="${item.img}" alt="${item.title}" class="card-img-top rounded" width="25px" />
+                    </a>
                 <div class="mt-1 mx-3">
                     <p>${item.title}</p>
                 </div>
@@ -43,6 +44,8 @@ let ShowBooks = (data) => {
         `;
         // Aggiungi la card al contenitore dei risultati della ricerca
         bookList.appendChild(card);
+
+        console.log(window.location.search);
 
         // Aggiungi l'evento al pulsante "Add to Cart" della carta appena creata
         let addToCartButton = card.querySelector('.bi-cart-plus');
@@ -105,7 +108,9 @@ let ShowCartBooks = (data) => {
                 </div>
                 
                 <div class="img-container">
-                    <img src="${item.img}" alt="${item.title}" class="card-img-top rounded" width="25px" />
+                    <a href="./details/index.html?1=${item.asin}">
+                        <img src="${item.img}" alt="${item.title}" class="card-img-top rounded" width="25px" />
+                    </a>
                 </div>
                 <div class="mt-1 mx-3">
                     <p>${item.title}</p>
@@ -128,7 +133,7 @@ let ShowCartBooks = (data) => {
     if (numberOfElCart > 0) {
         cartElements.classList.add('active');
     }
-    
+
     cartElements.innerText = numberOfElCart;
 };
 
