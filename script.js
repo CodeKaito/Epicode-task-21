@@ -121,15 +121,15 @@ let ShowCartBooks = (data) => {
         `;
         // Aggiungi la card al contenitore dei risultati della ricerca
         cartList.appendChild(card);
+    });
 
-        let numberOfElCart = cart.length;
+    let numberOfElCart = cart.length;
 
-        if (numberOfElCart > 0) {
-            cartElements.classList.add('active');
-        }
-
-        cartElements.innerText = numberOfElCart;
-    }); 
+    if (numberOfElCart > 0) {
+        cartElements.classList.add('active');
+    }
+    
+    cartElements.innerText = numberOfElCart;
 };
 
 function deleteBook(bookId) {
@@ -139,5 +139,5 @@ function deleteBook(bookId) {
         cart.splice(indexToDelete, 1);
         ShowCartBooks(cart);
     }
-    
+
 }
