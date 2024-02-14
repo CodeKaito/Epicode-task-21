@@ -27,7 +27,7 @@ let ShowBooks = (data) => {
         card.innerHTML = `
             <div class="card">
                 <div class="img-container">
-                    <a href="./details/index.html?1=${item.asin}">
+                    <a href="./details/index.html?q=${item.asin}">
                         <img src="${item.img}" alt="${item.title}" class="card-img-top rounded" width="25px" />
                     </a>
                 <div class="mt-1 mx-3">
@@ -108,7 +108,7 @@ let ShowCartBooks = (data) => {
                 </div>
                 
                 <div class="img-container">
-                    <a href="./details/index.html?1=${item.asin}">
+                    <a href="./details/index.html?q=${item.asin}">
                         <img src="${item.img}" alt="${item.title}" class="card-img-top rounded" width="25px" />
                     </a>
                 </div>
