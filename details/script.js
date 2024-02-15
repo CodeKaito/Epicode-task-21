@@ -18,14 +18,14 @@ if(window.location.search) {
         })
 }
 
-let showDetails = (book) => {
+let showDetails = ({ title, img, price, category}) => {
     let detailsHtml = `
         <div class="card details">
-            <img src="${book.img}" alt="${book.title} class="card-img-top" />
+            <img src="${img}" alt="${title} class="card-img-top" />
             <div class="card-body">
-                <h1>${book.title}</h1>
-                <p>Price: ${book.price}</p>
-                <p>Category: ${book.category}</p>
+                <h1>${title}</h1>
+                <p>Price: ${price}</p>
+                <p>Category: ${category}</p>
             </div>
         </div>
     `;
